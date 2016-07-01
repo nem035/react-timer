@@ -13,7 +13,7 @@
     "patch": "npm run git && npm version patch && npm run push",
     "push": "git push origin master --tags",
     "start": "node server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "karma start"
   },
   "author": "Nemanja Stojanovic",
   "license": "MIT",
