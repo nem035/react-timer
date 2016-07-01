@@ -1,4 +1,2 @@
-p {
-  margin: 10px;
-  color: #018bbc;
-}
+@import 'base/variables';
+@import 'components/nav';

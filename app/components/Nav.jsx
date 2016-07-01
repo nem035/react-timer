@@ -28,7 +28,9 @@ function Nav() {
         </ul>
       </div>
       <div className="top-bar-right">
-        <p>Created by Nem</p>
+        <p className="menu-text">
+          Created by <a href="https://github.com/nem035" target="_blank">nem035</a>
+        </p>
       </div>
     </div>
   );
