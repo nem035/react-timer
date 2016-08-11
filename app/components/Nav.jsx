@@ -11,7 +11,7 @@ function Nav() {
           </li>
           <li>
             <IndexLink
-              to="/"
+              to="/timer"
               activeClassName="active"
             >
               Timer
@@ -19,7 +19,7 @@ function Nav() {
           </li>
           <li>
             <Link
-              to="/"
+              to="/countdown"
               activeClassName="active"
             >
               Countdown
