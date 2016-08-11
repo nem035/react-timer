@@ -6,7 +6,7 @@ function Nav() {
     <div className="top-bar">
       <div className="top-bar-left">
         <ul className="menu">
-          <li className="menu-text">
+          <li className="menu-text app-name">
             React Timer
           </li>
           <li>

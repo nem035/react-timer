@@ -7,11 +7,16 @@
 
   .menu-text {
     color: $nav-text-color;
-  }
 
-  .menu > .menu-text > a {
-    display: inline;
-    padding: 0;
+    &:not(.app-name) {
+      font-weight: normal;
+    }
+
+    a {
+      display: inline;
+      font-weight: bold;
+      padding: 0;
+    }
   }
 
   .active-link {
