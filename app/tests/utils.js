@@ -13,7 +13,12 @@ function jQueryNode(instance) {
   return $(ReactDOM.findDOMNode(instance));
 }
 
+function simulateSubmit(element) {
+  return TestUtils.Simulate.submit(element);
+}
+
 module.exports = {
   renderFactory,
   jQueryNode,
+  simulateSubmit,
 };

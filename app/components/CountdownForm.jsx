@@ -32,6 +32,7 @@ class CountdownForm extends React.Component {
           <input
             type="number"
             min="0"
+            max="9999999999"
             placeholder="Enter time in seconds"
             ref="secondsInput"
           />
