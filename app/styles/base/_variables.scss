@@ -3,9 +3,9 @@ $body-background-color: #e3e3e3;
 
 // Navigation
 $nav-background-color: #333;
-$nav-text-color: white;
+$nav-text-color: #fff;
 
 // Clock
-$clock-text-color: white;
+$clock-text-color: #fff;
 $clock-background-color: #018bbc;
-$clock-border-color: #209988;
+$clock-border-color: $nav-background-color;

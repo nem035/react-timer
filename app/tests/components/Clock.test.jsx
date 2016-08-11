@@ -1,24 +1,15 @@
 const React = require('react');
-const ReactDOM = require('react-dom');
 const expect = require('expect');
-const $ = require('jQuery');
-const TestUtils = require('react-addons-test-utils');
+const { renderFactory, jQueryNode } = require('testUtils');
 
 const Clock = require('Clock');
-
-const renderClock = (props = {}) => {
-  return TestUtils.renderIntoDocument(<Clock {...props} />);
-};
-
-const jQueryNode = (clock) => {
-  return $(ReactDOM.findDOMNode(clock));
-};
+const renderClock = renderFactory(Clock);
 
 const tests = [{
-  totalSeconds: 615,
+  seconds: 615,
   expected: '10:15',
 }, {
-  totalSeconds: 61,
+  seconds: 61,
   expected: '01:01',
 }];
 
@@ -29,10 +20,10 @@ describe('Clock', () => {
   });
 
   describe('formatSeconds', () => {
-    it('should format totalSeconds', () => {
+    it('should format seconds', () => {
       const clock = renderClock();
       tests.map((t) => {
-        t.actual = clock.formatSeconds(t.totalSeconds);
+        t.actual = clock.formatSeconds(t.seconds);
         return t;
       }).forEach(({ actual, expected }) => {
         expect(actual).toBe(expected);
@@ -44,8 +35,8 @@ describe('Clock', () => {
   describe('render', () => {
     it('should render clock', () => {
       const textSelector = '.clock-text';
-      tests.forEach(({ totalSeconds, expected }) => {
-        const clock = renderClock({ totalSeconds });
+      tests.forEach(({ seconds, expected }) => {
+        const clock = renderClock({ seconds });
         const renderedText = jQueryNode(clock).find(textSelector).text();
         expect(renderedText).toBe(expected);
       });
