@@ -1,4 +1,3 @@
-const React = require('react');
 const expect = require('expect');
 const { renderFactory, jQueryNode } = require('testUtils');
 
