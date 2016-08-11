@@ -1,2 +1,7 @@
 @import 'base/variables';
 @import 'components/nav';
+@import 'components/clock';
+
+body {
+  background-color: $body-background-color;
+}
