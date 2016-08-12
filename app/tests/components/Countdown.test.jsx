@@ -25,6 +25,7 @@ describe('Countdown', () => {
           expect(countdown.state.seconds).toBe(start);
         } else {
           expect(countdown.state.seconds).toBe(0);
+          expect(countdown.state.status).toBe('stopped');
           done();
         }
       }, 1001);

@@ -38,11 +38,13 @@ class Countdown extends React.Component {
 
   startTimer() {
     this.timer = setInterval(() => {
-      const { state } = this;
-      const seconds = state.seconds > 0 ? state.seconds - 1 : 0;
+      const seconds = this.state.seconds - 1;
       this.setState({
         seconds,
       });
+      if (seconds === 0) {
+        this.stopTimer();
+      }
     }, 1000);
   }
 
