@@ -17,7 +17,7 @@ class CountdownForm extends React.Component {
     if (strSeconds.length > 0) {
       secondsInput.value = '';
       const seconds = parseInt(strSeconds, 10);
-      this.props.onSetCountdown(seconds);
+      this.props.onStartCountdown(seconds);
     }
   }
 
@@ -49,7 +49,7 @@ class CountdownForm extends React.Component {
 }
 
 CountdownForm.propTypes = {
-  onSetCountdown: React.PropTypes.func.isRequired,
+  onStartCountdown: React.PropTypes.func.isRequired,
 };
 
 module.exports = CountdownForm;
