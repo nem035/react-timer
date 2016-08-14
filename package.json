@@ -1,6 +1,6 @@
 {
   "name": "react-simple-timer",
-  "version": "0.9.4",
+  "version": "0.9.5",
   "description": "Simple timer application, writen with React & Foundation",
   "main": "index.js",
   "scripts": {
