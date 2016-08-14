@@ -15,7 +15,7 @@ const {
 
 const Main = require('Main');
 const Countdown = require('Countdown');
-const Timer = require('Timer');
+const Countup = require('Countup');
 
 // load foundation
 require('style!css!foundation-sites/dist/foundation.min.css');
@@ -30,8 +30,8 @@ ReactDOM.render(
   <Router history={hashHistory}>
     <Route path="/" component={Main}>
       <Route path="countdown" component={Countdown} />
-      <Route path="timer" component={Timer} />
-      <IndexRoute component={Timer} />
+      <Route path="timer" component={Countup} />
+      <IndexRoute component={Countup} />
     </Route>
   </Router>,
   document.getElementById('app') // eslint-disable-line no-undef

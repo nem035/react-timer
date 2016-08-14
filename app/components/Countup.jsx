@@ -5,7 +5,6 @@ eslint
   import/no-extraneous-dependencies: "off"
 */
 const React = require('react');
-const CountdownForm = require('CountdownForm');
 const Controls = require('Controls');
 const Timer = require('Timer');
 
@@ -15,44 +14,45 @@ const {
   },
 } = require('utils');
 
-class Countdown extends Timer {
+class Countup extends Timer {
 
   constructor(props) {
     super(props);
 
-    this.handleStartTimer = this.handleStartTimer.bind(this);
     this.runTimerInterval = this.runTimerInterval.bind(this);
   }
 
   runTimerInterval() {
-    let { status, seconds } = this.state;
-    seconds -= 1;
-    if (seconds === 0) {
-      status = CLEARED;
-      this.setState({
-        seconds,
-        status,
-      });
-    } else {
-      this.setState({
-        seconds,
-      });
-    }
+    let { seconds } = this.state;
+    seconds += 1;
+    this.setState({
+      seconds,
+    });
   }
 
   renderControlArea() {
     const { status } = this.state;
     switch (status) {
       case CLEARED:
-        return <CountdownForm onStartCountdown={this.handleStartTimer} />;
+        return (
+          <button
+            type="button"
+            className="button-start button success expanded"
+            onClick={() => {
+              this.handleStartTimer(0);
+            }}
+          >
+            Start
+          </button>
+        );
       case RUNNING:
       case PAUSED:
         return <Controls status={status} onStatusChange={this.handleStatusChange} />;
       default:
-        console.error(`Countdown.renderControlArea: ${INVALID} status ${status}`);
+        console.error(`Countup.renderControlArea: ${INVALID} status ${status}`);
         return null;
     }
   }
 }
 
-module.exports = Countdown;
+module.exports = Countup;

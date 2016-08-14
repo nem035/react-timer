@@ -17,7 +17,7 @@ describe('Countdown', () => {
   });
 
   describe('handleStartCountdown', () => {
-    it('should set state to started and count down', (done) => {
+    it('should set state to running and count down', (done) => {
       const {
         instance: countdown,
       } = renderCountdown();
@@ -28,7 +28,7 @@ describe('Countdown', () => {
       expect(countdown.state.seconds).toBe(start);
       expect(countdown.state.status).toBe(RUNNING);
 
-      setInterval(() => {
+      setTimeout(() => {
         start -= 1;
         if (start >= 0) {
           expect(countdown.state.seconds).toBe(start);
