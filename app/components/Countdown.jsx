@@ -20,7 +20,6 @@ class Countdown extends Timer {
   constructor(props) {
     super(props);
 
-    this.handleStartTimer = this.handleStartTimer.bind(this);
     this.runTimerInterval = this.runTimerInterval.bind(this);
   }
 
