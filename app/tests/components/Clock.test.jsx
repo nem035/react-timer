@@ -1,3 +1,4 @@
+/* eslint no-undef: "off", import/no-unresolved: "off" */
 const expect = require('expect');
 const { renderFactory, jQueryNode } = require('testUtils');
 
@@ -13,7 +14,6 @@ const tests = [{
 }];
 
 describe('Clock', () => {
-
   it('should exist', () => {
     expect(Clock).toExist();
   });
@@ -28,7 +28,6 @@ describe('Clock', () => {
         expect(actual).toBe(expected);
       });
     });
-
   });
 
   describe('render', () => {

@@ -1,3 +1,4 @@
+/* eslint import/no-unresolved: "off" */
 const React = require('react');
 const Nav = require('Nav');
 

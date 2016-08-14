@@ -1,3 +1,4 @@
+/* eslint no-undef: "off", import/no-unresolved: "off" */
 const expect = require('expect');
 const { renderFactory, jQueryNode, simulateSubmit } = require('testUtils');
 
@@ -17,7 +18,6 @@ function generateTestData() {
 }
 
 describe('CountdownForm', () => {
-
   it('should exist', () => {
     expect(CountdownForm).toExist();
 

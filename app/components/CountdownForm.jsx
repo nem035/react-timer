@@ -38,7 +38,7 @@ class CountdownForm extends React.Component {
           />
           <button
             type="submit"
-            className="button expanded"
+            className="button-start button expanded"
           >
             Start
           </button>

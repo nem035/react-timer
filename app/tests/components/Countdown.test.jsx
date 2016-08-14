@@ -1,8 +1,11 @@
+/* eslint no-undef: "off", import/no-unresolved: "off" */
 const expect = require('expect');
 const { renderFactory } = require('testUtils');
 
 const Countdown = require('Countdown');
 const renderCountdown = renderFactory(Countdown);
+
+const { CLEARED, STARTED } = require('utils').countdownStatuses;
 
 describe('Countdown', () => {
   it('should exist', () => {
@@ -17,7 +20,7 @@ describe('Countdown', () => {
       countdown.handleStartCountdown(start);
 
       expect(countdown.state.seconds).toBe(start);
-      expect(countdown.state.status).toBe('started');
+      expect(countdown.state.status).toBe(STARTED);
 
       setInterval(() => {
         start -= 1;
@@ -25,7 +28,7 @@ describe('Countdown', () => {
           expect(countdown.state.seconds).toBe(start);
         } else {
           expect(countdown.state.seconds).toBe(0);
-          expect(countdown.state.status).toBe('stopped');
+          expect(countdown.state.status).toBe(CLEARED);
           done();
         }
       }, 1001);
