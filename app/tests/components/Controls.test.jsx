@@ -26,7 +26,7 @@ describe('Controls', () => {
 
     it('should render start button when paused', () => {
       const $el = jQueryNodeFromStatus(PAUSED);
-      const $startButton = $el.find('button.button-started');
+      const $startButton = $el.find('button.button-start');
       expect($startButton.length).toBe(1);
     });
   });

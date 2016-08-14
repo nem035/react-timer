@@ -20,6 +20,22 @@ class Countdown extends React.Component {
     };
   }
 
+  componentWillMount() {
+    console.info('componentWillMount');
+  }
+
+  componentDidMount() {
+    console.info('componentDidMount');
+  }
+
+  componentWillReceiveProps(props) {
+    console.info(`componentWillReceiveProps: ${props}`);
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    console.info(`componentWillUpdate: ${nextProps}, ${nextState}`);
+  }
+
   componentDidUpdate(prevProps, prevState) {
     const newStatus = this.state.status;
     const oldStatus = prevState.status;
@@ -31,14 +47,19 @@ class Countdown extends React.Component {
           break;
         case CLEARED:
           this.clearTimer();
+          this.resetTimer();
           break;
         case PAUSED:
-          this.pauseTimer();
+          this.clearTimer();
           break;
         default:
           throw new Error(`${INVALID} status ${status}`);
       }
     }
+  }
+
+  componentWillUnmount() {
+    console.info('componentWillUnmount');
   }
 
   startTimer() {
@@ -60,16 +81,15 @@ class Countdown extends React.Component {
   }
 
   clearTimer() {
-    this.pauseTimer();
+    clearInterval(this.timer);
+    this.timer = undefined;
+  }
+
+  resetTimer() {
     const seconds = 0;
     this.setState({
       seconds,
     });
-  }
-
-  pauseTimer() {
-    clearInterval(this.timer);
-    this.timer = undefined;
   }
 
   handleStartCountdown(seconds) {
