@@ -6,7 +6,7 @@ eslint
 */
 const expect = require('expect');
 const { renderFactory } = require('testUtils');
-const { RUNNING, PAUSED } = require('utils').countdownStatuses;
+const { RUNNING, PAUSED } = require('utils').clockStatuses;
 const Controls = require('Controls');
 
 const renderControls = renderFactory(Controls);

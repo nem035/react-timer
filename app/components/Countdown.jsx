@@ -6,15 +6,14 @@ eslint
 */
 const React = require('react');
 const Clock = require('Clock');
+const ClockStatus = require('ClockStatus');
 const CountdownForm = require('CountdownForm');
 const Controls = require('Controls');
 
 const {
-  countdownStatuses: {
+  clockStatuses: {
     CLEARED, RUNNING, PAUSED, INVALID,
   },
-  statusToCSSClass,
-  statusToText,
 } = require('utils');
 
 const {
@@ -28,7 +27,7 @@ class Countdown extends React.Component {
 
     this.handleStartCountdown = this.handleStartCountdown.bind(this);
     this.handleStatusChange = this.handleStatusChange.bind(this);
-    this.timerInterval = this.timerInterval.bind(this);
+    this.runTimerInterval = this.runTimerInterval.bind(this);
 
     this.state = {
       seconds: 0,
@@ -69,7 +68,7 @@ class Countdown extends React.Component {
           this.clearTimer();
           break;
         default:
-          console.error(`componentDidUpdate: ${INVALID} status ${newStatus}`);
+          console.error(`Countdown.componentDidUpdate: ${INVALID} status ${newStatus}`);
       }
     }
   }
@@ -78,7 +77,7 @@ class Countdown extends React.Component {
     console.info('componentWillUnmount');
   }
 
-  timerInterval() {
+  runTimerInterval() {
     let { status, seconds } = this.state;
     seconds -= 1;
     if (seconds === 0) {
@@ -95,7 +94,7 @@ class Countdown extends React.Component {
   }
 
   startTimer() {
-    this.timer = setInterval(this.timerInterval, 1000);
+    this.timer = setInterval(this.runTimerInterval, 1000);
   }
 
   clearTimer() {
@@ -133,24 +132,19 @@ class Countdown extends React.Component {
       case PAUSED:
         return <Controls status={status} onStatusChange={this.handleStatusChange} />;
       default:
-        console.error(`renderControlArea: ${INVALID} status ${status}`);
+        console.error(`Countdown.renderControlArea: ${INVALID} status ${status}`);
         return null;
     }
   }
 
   render() {
     const { seconds, status } = this.state;
-    const text = statusToText(status);
     return (
       <div>
         <h1 className="page-title">
           Countdown
         </h1>
-        <div className="countdown-label">
-          <span className={`label label-${statusToCSSClass(status)}`}>
-            {typeof text === 'string' ? text.toUpperCase() : text}
-          </span>
-        </div>
+        <ClockStatus status={status} />
         <Clock seconds={seconds} status={status} />
         {this.renderControlArea()}
       </div>

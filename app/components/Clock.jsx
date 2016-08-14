@@ -3,7 +3,10 @@ eslint
   import/no-unresolved: "off"
 */
 const React = require('react');
-const { statusToCSSClass } = require('utils');
+const {
+  clockStatusesArray,
+  statusToCSSClass,
+} = require('utils');
 
 const {
   floor,
@@ -43,7 +46,7 @@ Clock.defaultProps = {
 
 Clock.propTypes = {
   seconds: React.PropTypes.number.isRequired,
-  status: React.PropTypes.string.isRequired,
+  status: React.PropTypes.oneOf(clockStatusesArray).isRequired,
 };
 
 module.exports = Clock;

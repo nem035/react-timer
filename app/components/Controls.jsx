@@ -5,9 +5,9 @@ eslint
   no-console: "off"
 */
 const React = require('react');
-const { countdownStatuses, countdownStatusesArray } = require('utils');
+const { clockStatuses, clockStatusesArray } = require('utils');
 
-const { CLEARED, RUNNING, PAUSED, INVALID } = countdownStatuses;
+const { CLEARED, RUNNING, PAUSED, INVALID } = clockStatuses;
 
 class Controls extends React.Component {
 
@@ -58,7 +58,7 @@ class Controls extends React.Component {
 }
 
 Controls.propTypes = {
-  status: React.PropTypes.oneOf(countdownStatusesArray).isRequired,
+  status: React.PropTypes.oneOf(clockStatusesArray).isRequired,
   onStatusChange: React.PropTypes.func.isRequired,
 };
 

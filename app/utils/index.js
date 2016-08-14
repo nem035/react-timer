@@ -1,19 +1,19 @@
-const countdownStatuses = {
+const clockStatuses = {
   CLEARED: 'STATUS_CLEARED',
   INVALID: 'STATUS_INVALID',
   PAUSED: 'STATUS_PAUSED',
   RUNNING: 'STATUS_RUNNING',
 };
 
-const countdownStatusesArray = Object.keys(countdownStatuses)
-  .map((key) => countdownStatuses[key]);
+const clockStatusesArray = Object.keys(clockStatuses)
+  .map((key) => clockStatuses[key]);
 
 function statusToText(status) {
   switch (status) {
-    case countdownStatuses.CLEARED: return 'cleared';
-    case countdownStatuses.INVALID: return 'invalid';
-    case countdownStatuses.PAUSED: return 'paused';
-    case countdownStatuses.RUNNING: return 'running';
+    case clockStatuses.CLEARED: return 'cleared';
+    case clockStatuses.INVALID: return 'invalid';
+    case clockStatuses.PAUSED: return 'paused';
+    case clockStatuses.RUNNING: return 'running';
     default: return null;
   }
 }
@@ -21,17 +21,17 @@ function statusToText(status) {
 function statusToCSSClass(status) {
   const text = statusToText(status);
   switch (status) {
-    case countdownStatuses.CLEARED: return `${text} primary`;
-    case countdownStatuses.INVALID: return `${text} alert`;
-    case countdownStatuses.PAUSED: return `${text} warning`;
-    case countdownStatuses.RUNNING: return `${text} success`;
+    case clockStatuses.CLEARED: return `${text} primary`;
+    case clockStatuses.INVALID: return `${text} alert`;
+    case clockStatuses.PAUSED: return `${text} warning`;
+    case clockStatuses.RUNNING: return `${text} success`;
     default: return null;
   }
 }
 
 module.exports = {
-  countdownStatuses,
-  countdownStatusesArray,
+  clockStatuses,
+  clockStatusesArray,
   statusToText,
   statusToCSSClass,
 };
