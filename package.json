@@ -6,14 +6,14 @@
   "scripts": {
     "build": "webpack",
     "deploy": "git push heroku master",
+    "dev": "webpack -w",
     "git": "npm run build && git add --all && git commit -am \"$(date)\"",
     "lint": "eslint --ext .jsx --ext .js ./app/*;",
     "major": "npm run git && npm version major && npm run push",
     "minor": "npm run git && npm version minor && npm run push",
     "patch": "npm run git && npm version patch && npm run push",
     "push": "git push origin master --tags",
-    "server": "node server.js",
-    "start": "webpack -w",
+    "start": "node server.js",
     "test": "karma start"
   },
   "author": "Nemanja Stojanovic",
