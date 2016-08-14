@@ -18,8 +18,6 @@ const Countdown = require('Countdown');
 const Countup = require('Countup');
 
 // load foundation
-require('style!css!foundation-sites/dist/foundation.min.css');
-const $ = require('jquery');
 $(document).foundation(); // eslint-disable-line no-undef
 
 // load styles
