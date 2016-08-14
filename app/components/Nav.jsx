@@ -29,7 +29,14 @@ function Nav() {
       </div>
       <div className="top-bar-right">
         <span className="menu-text">
-          Created by <a href="https://github.com/nem035" target="_blank">nem035</a>
+          Created by&nbsp;
+          <a
+            href="https://github.com/nem035"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            nem035
+          </a>
         </span>
       </div>
     </div>

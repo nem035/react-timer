@@ -5,20 +5,33 @@ class CountdownForm extends React.Component {
   constructor(props) {
     super(props);
 
-    this.onSubmit = this.onSubmit.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+
+    this.state = {
+      secondsString: '',
+    };
   }
 
-  onSubmit(e) {
+  handleSubmit(e) {
     e.preventDefault();
 
-    const { secondsInput } = this.refs;
-    const strSeconds = secondsInput.value;
+    const { secondsString } = this.state;
 
-    if (strSeconds.length > 0) {
-      secondsInput.value = '';
-      const seconds = parseInt(strSeconds, 10);
+    if (secondsString.length > 0) {
+      this.setState({
+        secondsString: '',
+      });
+      const seconds = parseInt(secondsString, 10);
       this.props.onStartCountdown(seconds);
     }
+  }
+
+  handleChange({ target }) {
+    const secondsString = target.value;
+    this.setState({
+      secondsString,
+    });
   }
 
   render() {
@@ -26,15 +39,15 @@ class CountdownForm extends React.Component {
       <div>
         <form
           className="countdown-form"
-          onSubmit={this.onSubmit}
-          ref="form"
+          onSubmit={this.handleSubmit}
         >
           <input
             type="number"
             min="0"
             max="9999999999"
             placeholder="Enter time in seconds"
-            ref="secondsInput"
+            value={this.state.secondsString}
+            onChange={this.handleChange}
           />
           <button
             type="submit"

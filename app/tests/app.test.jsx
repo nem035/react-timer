@@ -1,3 +1,8 @@
+/*
+eslint
+  no-undef: "off",
+  import/no-extraneous-dependencies: "off"
+*/
 const expect = require('expect');
 
 describe('App', () => {

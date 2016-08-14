@@ -35,7 +35,7 @@ module.exports = {
       // styles
       applicationStyles: 'app/styles/app.scss',
       // tests
-      testUtils: 'app/tests/utils.js',
+      testUtils: 'app/tests/test-utils.js',
     },
     extensions: ['', '.js', '.jsx'],
   },

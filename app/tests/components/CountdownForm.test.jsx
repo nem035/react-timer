@@ -1,20 +1,19 @@
-/* eslint no-undef: "off", import/no-unresolved: "off" */
+/*
+eslint
+  no-undef: "off",
+  import/no-unresolved: "off",
+  import/no-extraneous-dependencies: "off"
+*/
 const expect = require('expect');
-const { renderFactory, jQueryNode, simulateSubmit } = require('testUtils');
-
+const { renderFactory, simulateSubmit, simulateChange } = require('testUtils');
 const CountdownForm = require('CountdownForm');
+
 const renderCountdownForm = renderFactory(CountdownForm);
 
 function generateTestData() {
   const onStartCountdown = expect.createSpy();
-  const countdownForm = renderCountdownForm({ onStartCountdown });
-  const $el = jQueryNode(countdownForm);
-
-  return {
-    onStartCountdown,
-    countdownForm,
-    $el,
-  };
+  const props = { onStartCountdown };
+  return Object.assign({}, props, renderCountdownForm(props, true));
 }
 
 describe('CountdownForm', () => {
@@ -24,25 +23,21 @@ describe('CountdownForm', () => {
     describe('onStartCountdown', () => {
       it('should call onStartCountdown if anything is entered', () => {
         const {
+          node: $node,
           onStartCountdown,
-          countdownForm,
-          $el,
         } = generateTestData();
-
-        countdownForm.refs.secondsInput.value = '109';
-        simulateSubmit($el.find('form').get(0));
+        simulateChange($node.find('input').get(0), '109');
+        simulateSubmit($node.find('form').get(0));
         expect(onStartCountdown).toHaveBeenCalledWith(109);
       });
 
       it('should not call onStartCountdown if nothing is entered', () => {
         const {
+          node: $node,
           onStartCountdown,
-          countdownForm,
-          $el,
         } = generateTestData();
-
-        countdownForm.refs.secondsInput.value = '';
-        simulateSubmit($el.find('form').get(0));
+        simulateChange($node.find('input').get(0), '');
+        simulateSubmit($node.find('form').get(0));
         expect(onStartCountdown).toNotHaveBeenCalled();
       });
     });

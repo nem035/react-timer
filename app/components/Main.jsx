@@ -1,4 +1,8 @@
-/* eslint import/no-unresolved: "off" */
+/*
+eslint
+  import/no-unresolved: "off",
+  import/no-extraneous-dependencies: "off"
+*/
 const React = require('react');
 const Nav = require('Nav');
 

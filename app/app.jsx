@@ -1,3 +1,9 @@
+/*
+eslint
+  import/no-unresolved: "off",
+  import/no-extraneous-dependencies: "off",
+  import/newline-after-import: "off"
+  */
 const React = require('react');
 const ReactDOM = require('react-dom');
 const {
@@ -14,7 +20,7 @@ const Timer = require('Timer');
 // load foundation
 require('style!css!foundation-sites/dist/foundation.min.css');
 const $ = require('jquery');
-$(document).foundation();
+$(document).foundation(); // eslint-disable-line no-undef
 
 // load styles
 require('style!css!sass!applicationStyles');
@@ -28,5 +34,5 @@ ReactDOM.render(
       <IndexRoute component={Timer} />
     </Route>
   </Router>,
-  document.getElementById('app')
+  document.getElementById('app') // eslint-disable-line no-undef
 );

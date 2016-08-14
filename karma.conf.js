@@ -12,7 +12,7 @@ module.exports = function cfg(config) {
     reporters: ['mocha'],
     client: {
       mocha: {
-        timeout: '5000',
+        timeout: '10000',
       },
     },
     webpack: webpackConfig,

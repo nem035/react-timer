@@ -1,8 +1,13 @@
-/* eslint no-undef: "off", import/no-unresolved: "off" */
+/*
+eslint
+  no-undef: "off",
+  import/no-unresolved: "off",
+  import/no-extraneous-dependencies: "off"
+*/
 const expect = require('expect');
-const { renderFactory, jQueryNode } = require('testUtils');
-
+const { renderFactory } = require('testUtils');
 const Clock = require('Clock');
+
 const renderClock = renderFactory(Clock);
 
 const tests = [{
@@ -20,8 +25,11 @@ describe('Clock', () => {
 
   describe('formatSeconds', () => {
     it('should format seconds', () => {
-      const clock = renderClock();
+      const {
+        instance: clock,
+      } = renderClock();
       tests.map((t) => {
+        // eslint-disable-next-line no-param-reassign
         t.actual = clock.formatSeconds(t.seconds);
         return t;
       }).forEach(({ actual, expected }) => {
@@ -34,8 +42,10 @@ describe('Clock', () => {
     it('should render clock', () => {
       const textSelector = '.clock-text';
       tests.forEach(({ seconds, expected }) => {
-        const clock = renderClock({ seconds });
-        const renderedText = jQueryNode(clock).find(textSelector).text();
+        const {
+          node: $node,
+        } = renderClock({ seconds }, true);
+        const renderedText = $node.find(textSelector).text();
         expect(renderedText).toBe(expected);
       });
     });

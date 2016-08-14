@@ -1,6 +1,12 @@
-/* eslint import/no-unresolved: "off" */
+/*
+eslint
+  import/no-unresolved: "off",
+  import/no-extraneous-dependencies: "off",
+  no-console: "off"
+*/
 const React = require('react');
 const { countdownStatuses, countdownStatusesArray } = require('utils');
+
 const { CLEARED, STARTED, PAUSED, INVALID } = countdownStatuses;
 
 class Controls extends React.Component {
@@ -30,7 +36,8 @@ class Controls extends React.Component {
             Pause
           </button>);
       default:
-        throw new Error(`${INVALID} status ${status}`);
+        console.error(`getButtonTemplateFromStatus: ${INVALID} status ${status}`);
+        return null;
     }
   }
 
