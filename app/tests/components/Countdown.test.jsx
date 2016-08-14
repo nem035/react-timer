@@ -16,26 +16,27 @@ describe('Countdown', () => {
     expect(Countdown).toExist();
   });
 
-  describe('handleStartCountdown', () => {
+  describe('handleStartTimer', () => {
     it('should set state to running and count down', (done) => {
       const {
         instance: countdown,
       } = renderCountdown();
 
       let start = 3;
-      countdown.handleStartCountdown(start);
+      countdown.handleStartTimer(start);
 
       expect(countdown.state.seconds).toBe(start);
       expect(countdown.state.status).toBe(RUNNING);
 
-      setTimeout(() => {
+      const interval = setInterval(() => {
         start -= 1;
-        if (start >= 0) {
-          expect(countdown.state.seconds).toBe(start);
-        } else {
+        if (start === 0) {
           expect(countdown.state.seconds).toBe(0);
           expect(countdown.state.status).toBe(CLEARED);
+          clearInterval(interval);
           done();
+        } else {
+          expect(countdown.state.seconds).toBe(start);
         }
       }, 1001);
     });
@@ -46,7 +47,7 @@ describe('Countdown', () => {
       } = renderCountdown();
 
       const start = 3;
-      countdown.handleStartCountdown(start);
+      countdown.handleStartTimer(start);
       countdown.handleStatusChange(PAUSED);
 
       setTimeout(() => {
@@ -62,7 +63,7 @@ describe('Countdown', () => {
       } = renderCountdown();
 
       const start = 3;
-      countdown.handleStartCountdown(start);
+      countdown.handleStartTimer(start);
       countdown.handleStatusChange(CLEARED);
 
       setTimeout(() => {
@@ -79,12 +80,12 @@ describe('Countdown', () => {
 
       const start = 3;
       const somethingInvalid = 'something invalid';
-      countdown.handleStartCountdown(start);
+      countdown.handleStartTimer(start);
       countdown.handleStatusChange(somethingInvalid);
 
       setTimeout(() => {
         expect(countdown.state.seconds).toBe(2);
-        expect(countdown.state.status).toBe(somethingInvalid);
+        expect(countdown.state.status).toBe(RUNNING);
         done();
       }, 1001);
     });

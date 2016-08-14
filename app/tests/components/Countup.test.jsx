@@ -16,65 +16,74 @@ describe('Countup', () => {
     expect(Countup).toExist();
   });
 
-  describe('handleStartCountup', () => {
+  describe('handleStartTimer', () => {
     it('should set state to running and count up from 0', (done) => {
       const {
-        instance: timer,
+        instance: countup,
       } = renderCountup();
 
-      timer.handleStartCountup();
-      expect(timer.state.seconds).toBe(0);
-      expect(timer.state.status).toBe(RUNNING);
+      countup.handleStartTimer(0);
+      expect(countup.state.seconds).toBe(0);
+      expect(countup.state.status).toBe(RUNNING);
 
       let start = 0;
-      setTimeout(() => {
+      const end = 3;
+      const interval = setInterval(() => {
         start += 1;
-        expect(timer.state.seconds).toBe(start);
+        expect(countup.state.status).toBe(RUNNING);
+        if (start === end) {
+          expect(countup.state.seconds).toBe(end);
+          clearInterval(interval);
+          done();
+        } else {
+          expect(countup.state.seconds).toBe(start);
+        }
+      }, 1001);
+    });
+
+    it('should pause countup on paused status', (done) => {
+      const {
+        instance: countup,
+      } = renderCountup();
+
+      countup.handleStartTimer(0);
+      countup.handleStatusChange(PAUSED);
+
+      setTimeout(() => {
+        expect(countup.state.seconds).toBe(0);
+        expect(countup.state.status).toBe(PAUSED);
         done();
       }, 1001);
     });
 
-    it('should pause timer on paused status', (done) => {
+    it('should stop countup on cleared status', (done) => {
       const {
-        instance: timer,
+        instance: countup,
       } = renderCountup();
 
-      timer.handleStartCountup();
-      timer.handleStatusChange(PAUSED);
+      countup.handleStartTimer(0);
+      expect(countup.state.seconds).toBe(0);
+      countup.handleStatusChange(CLEARED);
 
       setTimeout(() => {
-        expect(timer.state.seconds).toBe(0);
-        expect(timer.state.status).toBe(PAUSED);
-        done();
-      }, 1001);
-    });
-
-    it('should stop timer on cleared status', (done) => {
-      const {
-        instance: timer,
-      } = renderCountup();
-
-      timer.handleStartCountup();
-      timer.handleStatusChange(CLEARED);
-
-      setTimeout(() => {
-        expect(timer.state.seconds).toBe(0);
-        expect(timer.state.status).toBe(CLEARED);
+        expect(countup.state.seconds).toBe(0);
+        expect(countup.state.status).toBe(CLEARED);
         done();
       }, 1001);
     });
 
     it('should do nothing for invalid status', (done) => {
       const {
-        instance: timer,
+        instance: countup,
       } = renderCountup();
 
-      timer.handleStartCountup();
-      timer.handleStatusChange('something invalid');
+      countup.handleStartTimer(0);
+      expect(countup.state.seconds).toBe(0);
+      countup.handleStatusChange('something invalid');
 
       setTimeout(() => {
-        expect(timer.state.seconds).toBe(1);
-        expect(timer.state.status).toBe(RUNNING);
+        expect(countup.state.seconds).toBe(1);
+        expect(countup.state.status).toBe(RUNNING);
         done();
       }, 1001);
     });
