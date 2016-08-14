@@ -35,6 +35,7 @@ class CountdownForm extends React.Component {
   }
 
   render() {
+    const { secondsString } = this.state;
     return (
       <div>
         <form
@@ -46,12 +47,13 @@ class CountdownForm extends React.Component {
             min="0"
             max="9999999999"
             placeholder="Enter time in seconds"
-            value={this.state.secondsString}
+            value={secondsString}
             onChange={this.handleChange}
           />
           <button
             type="submit"
-            className="button-start button expanded"
+            className="button-start button success expanded"
+            disabled={secondsString.length === 0 ? 'disabled' : ''}
           >
             Start
           </button>

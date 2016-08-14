@@ -6,7 +6,7 @@ eslint
 */
 const expect = require('expect');
 const { renderFactory } = require('testUtils');
-const { STARTED, PAUSED } = require('utils').countdownStatuses;
+const { RUNNING, PAUSED } = require('utils').countdownStatuses;
 const Controls = require('Controls');
 
 const renderControls = renderFactory(Controls);
@@ -24,7 +24,7 @@ describe('Controls', () => {
     it('should render pause button when started', () => {
       const {
         node: $node,
-      } = getjQueryNodeUsingStatus(STARTED);
+      } = getjQueryNodeUsingStatus(RUNNING);
       const $pauseButton = $node.find('button.button-pause');
       expect($pauseButton.length).toBe(1);
     });

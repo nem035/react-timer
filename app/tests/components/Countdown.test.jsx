@@ -6,7 +6,7 @@ eslint
 */
 const expect = require('expect');
 const { renderFactory } = require('testUtils');
-const { CLEARED, STARTED, PAUSED } = require('utils').countdownStatuses;
+const { CLEARED, RUNNING, PAUSED } = require('utils').countdownStatuses;
 const Countdown = require('Countdown');
 
 const renderCountdown = renderFactory(Countdown);
@@ -26,7 +26,7 @@ describe('Countdown', () => {
       countdown.handleStartCountdown(start);
 
       expect(countdown.state.seconds).toBe(start);
-      expect(countdown.state.status).toBe(STARTED);
+      expect(countdown.state.status).toBe(RUNNING);
 
       setInterval(() => {
         start -= 1;

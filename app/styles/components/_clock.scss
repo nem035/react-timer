@@ -2,13 +2,21 @@
 
   align-items: center;
   background-color: $clock-background-color;
-  border: 2px solid $clock-border-color;
+  border: 5px solid $clock-border-color;
   border-radius: 50%;
   display: flex;
   height: 20rem;
   justify-content: center;
-  margin: 4rem auto;
+  margin: 1.5rem auto;
   width: 20rem;
+
+  &.clock-running {
+    border-color: $color-success;
+  }
+
+  &.clock-paused {
+    border-color: $color-warning;
+  }
 
   .clock-text {
     color: $clock-text-color;

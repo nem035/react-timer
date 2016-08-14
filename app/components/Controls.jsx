@@ -7,7 +7,7 @@ eslint
 const React = require('react');
 const { countdownStatuses, countdownStatusesArray } = require('utils');
 
-const { CLEARED, STARTED, PAUSED, INVALID } = countdownStatuses;
+const { CLEARED, RUNNING, PAUSED, INVALID } = countdownStatuses;
 
 class Controls extends React.Component {
 
@@ -22,15 +22,15 @@ class Controls extends React.Component {
       case PAUSED:
         return (
           <button
-            className="button-start button primary"
-            onClick={this.onStatusChangeFactory(STARTED)}
+            className="button-start button success"
+            onClick={this.onStatusChangeFactory(RUNNING)}
           >
             Start
           </button>);
-      case STARTED:
+      case RUNNING:
         return (
           <button
-            className="button-pause button secondary"
+            className="button-pause button warning"
             onClick={this.onStatusChangeFactory(PAUSED)}
           >
             Pause
@@ -47,7 +47,7 @@ class Controls extends React.Component {
       <div className="controls">
         {this.getButtonTemplateFromStatus(status)}
         <button
-          className="button-stop button alert hollow"
+          className="button-stop button alert"
           onClick={this.onStatusChangeFactory(CLEARED)}
         >
           Clear

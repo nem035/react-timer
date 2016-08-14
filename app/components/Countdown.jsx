@@ -9,7 +9,13 @@ const Clock = require('Clock');
 const CountdownForm = require('CountdownForm');
 const Controls = require('Controls');
 
-const { CLEARED, STARTED, PAUSED, INVALID } = require('utils').countdownStatuses;
+const {
+  countdownStatuses: {
+    CLEARED, RUNNING, PAUSED, INVALID,
+  },
+  statusToCSSClass,
+  statusToText,
+} = require('utils');
 
 const {
   stringify,
@@ -52,7 +58,7 @@ class Countdown extends React.Component {
 
     if (newStatus !== oldStatus) {
       switch (newStatus) {
-        case STARTED:
+        case RUNNING:
           this.startTimer();
           break;
         case CLEARED:
@@ -105,7 +111,7 @@ class Countdown extends React.Component {
   }
 
   handleStartCountdown(seconds) {
-    const status = STARTED;
+    const status = RUNNING;
     this.setState({
       seconds,
       status,
@@ -123,7 +129,7 @@ class Countdown extends React.Component {
     switch (status) {
       case CLEARED:
         return <CountdownForm onStartCountdown={this.handleStartCountdown} />;
-      case STARTED:
+      case RUNNING:
       case PAUSED:
         return <Controls status={status} onStatusChange={this.handleStatusChange} />;
       default:
@@ -133,11 +139,19 @@ class Countdown extends React.Component {
   }
 
   render() {
-    const { seconds } = this.state;
+    const { seconds, status } = this.state;
+    const text = statusToText(status);
     return (
       <div>
-        <h1 className="page-title">Countdown</h1>
-        <Clock seconds={seconds} />
+        <h1 className="page-title">
+          Countdown
+        </h1>
+        <div className="countdown-label">
+          <span className={`label label-${statusToCSSClass(status)}`}>
+            {typeof text === 'string' ? text.toUpperCase() : text}
+          </span>
+        </div>
+        <Clock seconds={seconds} status={status} />
         {this.renderControlArea()}
       </div>
     );

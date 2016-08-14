@@ -1,4 +1,9 @@
+/*
+eslint
+  import/no-unresolved: "off"
+*/
 const React = require('react');
+const { statusToCSSClass } = require('utils');
 
 const {
   floor,
@@ -21,9 +26,9 @@ class Clock extends React.Component {
   }
 
   render() {
-    const { seconds } = this.props;
+    const { seconds, status } = this.props;
     return (
-      <div className="clock">
+      <div className={`clock clock-${statusToCSSClass(status)}`}>
         <span className="clock-text">
           {this.formatSeconds(seconds)}
         </span>
@@ -38,6 +43,7 @@ Clock.defaultProps = {
 
 Clock.propTypes = {
   seconds: React.PropTypes.number.isRequired,
+  status: React.PropTypes.string.isRequired,
 };
 
 module.exports = Clock;
