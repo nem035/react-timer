@@ -29,7 +29,7 @@ ReactDOM.render(
     <Route path="/" component={Main}>
       <Route path="countdown" component={CountDown} title={'Count Down'} />
       <Route path="countup" component={CountUp} title={'Count Up'} />
-      <IndexRoute component={CountUp} />
+      <IndexRoute component={CountUp} title={'Count Up'} />
     </Route>
   </Router>,
   document.getElementById('app') // eslint-disable-line no-undef
