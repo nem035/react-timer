@@ -119,10 +119,11 @@ class Timer extends React.Component {
 
   render() {
     const { seconds, status } = this.state;
+    const title = this.props.route.title || 'Timer';
     return (
       <div>
         <h1 className="page-title">
-          {this.props.title}
+          {title}
         </h1>
         <ClockStatus status={status} />
         <Clock seconds={seconds} status={status} />
@@ -131,11 +132,6 @@ class Timer extends React.Component {
     );
   }
 }
-
-Timer.defaultProps = {
-  title: 'Timer',
-};
-
 Timer.propTypes = {
   title: React.PropTypes.string,
 };

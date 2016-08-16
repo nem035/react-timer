@@ -14,7 +14,7 @@ const {
   },
 } = require('utils');
 
-class Countup extends Timer {
+class CountUp extends Timer {
 
   constructor(props) {
     super(props);
@@ -49,10 +49,10 @@ class Countup extends Timer {
       case PAUSED:
         return <Controls status={status} onStatusChange={this.handleStatusChange} />;
       default:
-        console.error(`Countup.renderControlArea: ${INVALID} status ${status}`);
+        console.error(`CountUp.renderControlArea: ${INVALID} status ${status}`);
         return null;
     }
   }
 }
 
-module.exports = Countup;
+module.exports = CountUp;

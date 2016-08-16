@@ -7,20 +7,20 @@ eslint
 const expect = require('expect');
 const { renderFactory } = require('testUtils');
 const { CLEARED, RUNNING, PAUSED } = require('utils').clockStatuses;
-const Countup = require('Countup');
+const CountUp = require('CountUp');
 
-const renderCountup = renderFactory(Countup);
+const renderCountUp = renderFactory(CountUp);
 
-describe('Countup', () => {
+describe('CountUp', () => {
   it('should exist', () => {
-    expect(Countup).toExist();
+    expect(CountUp).toExist();
   });
 
   describe('handleStartTimer', () => {
     it('should set state to running and count up from 0', (done) => {
       const {
         instance: countup,
-      } = renderCountup();
+      } = renderCountUp();
 
       countup.handleStartTimer(0);
       expect(countup.state.seconds).toBe(0);
@@ -44,7 +44,7 @@ describe('Countup', () => {
     it('should pause countup on paused status', (done) => {
       const {
         instance: countup,
-      } = renderCountup();
+      } = renderCountUp();
 
       countup.handleStartTimer(0);
       countup.handleStatusChange(PAUSED);
@@ -59,7 +59,7 @@ describe('Countup', () => {
     it('should stop countup on cleared status', (done) => {
       const {
         instance: countup,
-      } = renderCountup();
+      } = renderCountUp();
 
       countup.handleStartTimer(0);
       expect(countup.state.seconds).toBe(0);
@@ -75,7 +75,7 @@ describe('Countup', () => {
     it('should do nothing for invalid status', (done) => {
       const {
         instance: countup,
-      } = renderCountup();
+      } = renderCountUp();
 
       countup.handleStartTimer(0);
       expect(countup.state.seconds).toBe(0);

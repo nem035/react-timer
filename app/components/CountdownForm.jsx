@@ -1,6 +1,6 @@
 const React = require('react');
 
-class CountdownForm extends React.Component {
+class CountDownForm extends React.Component {
 
   constructor(props) {
     super(props);
@@ -23,7 +23,7 @@ class CountdownForm extends React.Component {
         secondsString: '',
       });
       const seconds = parseInt(secondsString, 10);
-      this.props.onStartCountdown(seconds);
+      this.props.onStartCountDown(seconds);
     }
   }
 
@@ -63,8 +63,8 @@ class CountdownForm extends React.Component {
   }
 }
 
-CountdownForm.propTypes = {
-  onStartCountdown: React.PropTypes.func.isRequired,
+CountDownForm.propTypes = {
+  onStartCountDown: React.PropTypes.func.isRequired,
 };
 
-module.exports = CountdownForm;
+module.exports = CountDownForm;

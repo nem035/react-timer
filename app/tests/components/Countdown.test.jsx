@@ -7,20 +7,20 @@ eslint
 const expect = require('expect');
 const { renderFactory } = require('testUtils');
 const { CLEARED, RUNNING, PAUSED } = require('utils').clockStatuses;
-const Countdown = require('Countdown');
+const CountDown = require('CountDown');
 
-const renderCountdown = renderFactory(Countdown);
+const renderCountDown = renderFactory(CountDown);
 
-describe('Countdown', () => {
+describe('CountDown', () => {
   it('should exist', () => {
-    expect(Countdown).toExist();
+    expect(CountDown).toExist();
   });
 
   describe('handleStartTimer', () => {
     it('should set state to running and count down', (done) => {
       const {
         instance: countdown,
-      } = renderCountdown();
+      } = renderCountDown();
 
       let start = 3;
       countdown.handleStartTimer(start);
@@ -44,7 +44,7 @@ describe('Countdown', () => {
     it('should pause countdown on paused status', (done) => {
       const {
         instance: countdown,
-      } = renderCountdown();
+      } = renderCountDown();
 
       const start = 3;
       countdown.handleStartTimer(start);
@@ -60,7 +60,7 @@ describe('Countdown', () => {
     it('should stop countdown on cleared status', (done) => {
       const {
         instance: countdown,
-      } = renderCountdown();
+      } = renderCountDown();
 
       const start = 3;
       countdown.handleStartTimer(start);
@@ -76,7 +76,7 @@ describe('Countdown', () => {
     it('should do nothing for invalid status', (done) => {
       const {
         instance: countdown,
-      } = renderCountdown();
+      } = renderCountDown();
 
       const start = 3;
       const somethingInvalid = 'something invalid';

@@ -6,39 +6,39 @@ eslint
 */
 const expect = require('expect');
 const { renderFactory, simulateSubmit, simulateChange } = require('testUtils');
-const CountdownForm = require('CountdownForm');
+const CountDownForm = require('CountDownForm');
 
-const renderCountdownForm = renderFactory(CountdownForm);
+const renderCountDownForm = renderFactory(CountDownForm);
 
 function generateTestData() {
-  const onStartCountdown = expect.createSpy();
-  const props = { onStartCountdown };
-  return Object.assign({}, props, renderCountdownForm(props, true));
+  const onStartCountDown = expect.createSpy();
+  const props = { onStartCountDown };
+  return Object.assign({}, props, renderCountDownForm(props, true));
 }
 
-describe('CountdownForm', () => {
+describe('CountDownForm', () => {
   it('should exist', () => {
-    expect(CountdownForm).toExist();
+    expect(CountDownForm).toExist();
 
-    describe('onStartCountdown', () => {
-      it('should call onStartCountdown if anything is entered', () => {
+    describe('onStartCountDown', () => {
+      it('should call onStartCountDown if anything is entered', () => {
         const {
           node: $node,
-          onStartCountdown,
+          onStartCountDown,
         } = generateTestData();
         simulateChange($node.find('input').get(0), '109');
         simulateSubmit($node.find('form').get(0));
-        expect(onStartCountdown).toHaveBeenCalledWith(109);
+        expect(onStartCountDown).toHaveBeenCalledWith(109);
       });
 
-      it('should not call onStartCountdown if nothing is entered', () => {
+      it('should not call onStartCountDown if nothing is entered', () => {
         const {
           node: $node,
-          onStartCountdown,
+          onStartCountDown,
         } = generateTestData();
         simulateChange($node.find('input').get(0), '');
         simulateSubmit($node.find('form').get(0));
-        expect(onStartCountdown).toNotHaveBeenCalled();
+        expect(onStartCountDown).toNotHaveBeenCalled();
       });
     });
   });
